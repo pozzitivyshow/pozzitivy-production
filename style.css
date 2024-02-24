@@ -177,6 +177,21 @@ section h5{
     -webkit-backdrop-filter: blur(3px);
     font-size: 1.5vw;
 }
+.coming-soon .movie-cards-container .movie-card:nth-child(1){
+    background-image: url(all\ hail\ macbeth2.png);
+}
+.coming-soon .movie-cards-container .movie-card:nth-child(2){
+    background-image: url(Destination.png);
+}
+.coming-soon .movie-cards-container .movie-card:nth-child(3){
+    background-image: url(Burn!.png);
+}
+.coming-soon .movie-cards-container .movie-card:nth-child(4){
+    background-image: url(all\ hail\ macbeth2.png);
+}
+.coming-soon .movie-cards-container .movie-card:nth-child(5){
+    background-image: url(Destination.png);
+}
 .Favourites .movie-cards-container .movie-card:nth-child(1){
     background-image: url(jaws.webp);
 }
