@@ -181,16 +181,19 @@ section h5{
     background-image: url(all\ hail\ macbeth2.png);
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(2){
-    background-image: url(Destination.png);
+    background-image: url(img/DestinationCover.png);
+    background-position: 0 0;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(3){
-    background-image: url(Burn!.png);
+    background-image: url(img/Burn!Cover.png);
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(4){
     background-image: url(all\ hail\ macbeth2.png);
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(5){
-    background-image: url(Destination.png);
+    background-image: url(img/DestinationCover.png);
+    background-size: 105%;
+    background-position: -10px 0;
 }
 .Favourites .movie-cards-container .movie-card:nth-child(1){
     background-image: url(jaws.webp);
