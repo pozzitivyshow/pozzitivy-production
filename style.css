@@ -178,7 +178,8 @@ section h5{
     font-size: 1.5vw;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(all\ hail\ macbeth2.png);
+    background-image: url(img/all\ hail\ macbethCover.png);
+    background-position: 0 0;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(2){
     background-image: url(img/DestinationCover.png);
@@ -188,12 +189,13 @@ section h5{
     background-image: url(img/Burn!Cover.png);
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(4){
-    background-image: url(all\ hail\ macbeth2.png);
+    background-image: url(img/all\ hail\ macbethCover.png);
+    background-size: 105%;
+    background-position: -10px 0;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(5){
     background-image: url(img/DestinationCover.png);
-    background-size: 105%;
-    background-position: -10px 0;
+    background-position: 0 0;
 }
 .Favourites .movie-cards-container .movie-card:nth-child(1){
     background-image: url(jaws.webp);
