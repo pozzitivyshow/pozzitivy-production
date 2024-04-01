@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Righteous';
+    src: url('righteous-regular-webfont.woff2') format('woff2'),
+         url('righteous-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+*{
+    color: whitesmoke;
+}
+body{
+    font-family: righteous;
+    background-color: #000000;
+    /*good colour to remember: #4D839B*/
+}
+header{
+    padding: 0 0 0 2vw;
+    width: 100vw;
+    height: 5.5vw;
+    margin-top: -6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000014;
+    position: fixed;
+    z-index: 55;
+}
+nav{
+    width: 27.5vw;
+    font-size: 1.5vw;
+    display: flex;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+h1{
+    color: whitesmoke;
+    font-size: 2.2vw;
+}
+nav div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 5.5vw;
+    transition: .75s;
+}
+nav div:hover{
+    background-color: rgba(150,150,150,.125);
+}
+nav div a{
+    text-decoration: none;
+    color: whitesmoke;
+
+}
+nav div a img{
+    text-decoration: none;
+    color: whitesmoke;
+    width: 1.6vw;
+
+}

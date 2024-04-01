@@ -67,7 +67,7 @@ main{
     flex-direction: column;
 }
 main .top-image{
-    background-image: url(3515433-endgamedek.jpg);
+    background-image: url(img/3515433-endgamedek.jpg);
     background-size: cover;
     width: 99vw;
     height: 40vw;
@@ -141,7 +141,7 @@ section h5{
     margin-top: .5vw;
     width: 19vw;
     height: 11vw;
-    background-image: url(3515433-endgamedek.jpg);
+    background-image: url(img/3515433-endgamedek.jpg);
     background-position: center;
     background-size: cover;
     border-radius: 1.2vw;
@@ -178,8 +178,9 @@ section h5{
     font-size: 1.5vw;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(img/all\ hail\ macbethCover.png);
-    background-position: 0 0;
+    background-image: url(img/EchoOfTMRW.png);
+    background-size: 125%;
+    background-position: -20px 0;
 }
 .coming-soon .movie-cards-container .movie-card:nth-child(2){
     background-image: url(img/DestinationCover.png);
@@ -198,49 +199,49 @@ section h5{
     background-position: 0 0;
 }
 .Favourites .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(jaws.webp);
+    background-image: url(img/jaws.webp);
 }
 .Favourites .movie-cards-container .movie-card:nth-child(2){
-    background-image: url(interstellar.webp);
+    background-image: url(img/interstellar.webp);
 }
 .Favourites .movie-cards-container .movie-card:nth-child(3){
-    background-image: url(avatar.webp);
+    background-image: url(img/avatar.webp);
 }
 .Favourites .movie-cards-container .movie-card:nth-child(4){
-    background-image: url(2001.jpeg);
+    background-image: url(img/2001.jpeg);
 }
 .Favourites .movie-cards-container .movie-card:nth-child(5){
-    background-image: url(the-dark-knight.jpg);
+    background-image: url(img/the-dark-knight.jpg);
 }
 .Newest .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(Avatar2.jpeg);
+    background-image: url(img/Avatar2.jpeg);
 }
 .Newest .movie-cards-container .movie-card:nth-child(2){
-    background-image: url(Wonka.webp);
+    background-image: url(img/Wonka.webp);
 }
 .Newest .movie-cards-container .movie-card:nth-child(3){
-    background-image: url(FNAF.jpg);
+    background-image: url(img/FNAF.jpg);
 }
 .Newest .movie-cards-container .movie-card:nth-child(4){
-    background-image: url(oppenheimer.jpeg);
+    background-image: url(img/oppenheimer.jpeg);
 }
 .Newest .movie-cards-container .movie-card:nth-child(5){
-    background-image: url(SuperBrosMovie.webp);
+    background-image: url(img/SuperBrosMovie.webp);
 }
 .Kids .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(TMNT.avif);
+    background-image: url(img/TMNT.avif);
 }
 .Kids .movie-cards-container .movie-card:nth-child(2){
-    background-image: url(LegoMovie.jpg);
+    background-image: url(img/LegoMovie.jpg);
 }
 .Kids .movie-cards-container .movie-card:nth-child(3){
-    background-image: url(SuperBrosMovie.webp);
+    background-image: url(img/SuperBrosMovie.webp);
 }
 .Kids .movie-cards-container .movie-card:nth-child(4){
-    background-image: url(Minions2.jpg);
+    background-image: url(img/Minions2.jpg);
 }
 .Kids .movie-cards-container .movie-card:nth-child(5){
-    background-image: url(Rio.jpg);
+    background-image: url(img/Rio.jpg);
 }
 
 
