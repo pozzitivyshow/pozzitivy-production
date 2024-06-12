@@ -14,6 +14,12 @@ body{
     background-color: #000000;
     /*good colour to remember: #4D839B*/
 }
+.disable-scroll{
+    overflow: hidden;
+}
+.hidden{
+    opacity: 0;
+}
 header{
     padding: 0 0 0 2vw;
     width: 100vw;
@@ -25,7 +31,7 @@ header{
     margin-top: 0vw;
     justify-content: space-between;
     background-color: rgba(0,0,0,0);
-    z-index: 55;
+    z-index: 10;
     transition: .75s;
 }
 header:hover{
@@ -39,7 +45,7 @@ nav{
     height: 100%;
     display: flex;
     justify-content: flex-end;
-    z-index: 56;
+    z-index: 10;
 }
 
 h1{
@@ -68,19 +74,126 @@ nav div a img{
     width: 1.6vw;
 
 }
-
-main{
-    display: flex;
+.fullscreen-video{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 15;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    background-color: #000000;
 }
+.active{
+    display: flex;
+}
+.video-controls{
+    position: fixed;
+    z-index: 16;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem 2rem 1rem;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+.video-controls img{
+    width: 3rem;
+    height: 3rem;
+}
+.back-and-settings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+}
+.bottom-panels{
+    display: flex;
+    flex-direction: column;
+    height: 16rem;
+    justify-content: space-between;
+}
+.pause-info .blurred-panel {
+    width: 40vw;
+    height: 12.5vw;
+    backdrop-filter: blur(10px) brightness(70%);
+    border-radius: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    transition: .5s;
+}
+.pause-info .blurred-panel img{
+    width: 530px;
+    height: 101px;
+}
+.playback-controls .blurred-panel{
+    display: flex;
+    width: 100%;
+    height: 4.5vw;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(10px) brightness(70%);
+    border-radius: 1.5vw;
+    transition: .5s;
+}
+
+.pause-button-playback{
+    display: none;
+    width: .25rem;
+    height: .25rem;
+}
+.play-button-playback {
+    display: block;
+}
+.total-length{
+    width: 83vw;
+    height: .75rem;
+    background-color: rgba(217,217,217,.5);
+    border-radius: .375rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+.played-length{
+    width: 50vw;
+    height: .75rem;
+    background-color: white;
+}
+.sound-control-button-mute{
+    display: none;
+}
+.sound-control-button-loud{
+    display: block;
+}
+video {
+    width: 100vw;
+}
+video::backdrop ::-webkit-media-controls{
+    display:none !important;
+}
+#top-layer video::-webkit-media-controls {
+    display:none !important;
+  }
 .film-image{
     background-image: url(img/EchoOfTMRWTitle.png);
     background-size: cover;
     background-position: 0 -30px;
-    position: absolute;
     width: 100vw;
-    height: 55vw;
+    height: 100vh;
+    z-index: 1;
+}
+.film-image-moscow{
+    background-image: url(img/moscow-cover.png);
+    background-size: cover;
+    background-position: 0 -30px;
+    width: 100vw;
+    height: 100vh;
     z-index: 1;
 }
 .gradient-over-image{
@@ -106,6 +219,14 @@ main{
     align-items: center;
     text-align: center;
 }
+.series{
+    height: 34vw;
+}
+.control-button button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .button-images{
     width: 1.5vw;
     height: 1.5vw;
@@ -119,13 +240,13 @@ main{
 .blurred-description div p{
     font-size: 1.5vw;
     color: white;
-    margin: 1vw;
+    margin-left: .75vw;
+    margin-right: .75vw;
 }
 .blurred-description button p{
     font-size: 2vw;
     color: black;
     margin-left: 1vw;
-    margin-bottom: .5vw;
 }
 .blurred-description button{
     width: 28.5vw;
@@ -153,11 +274,92 @@ main{
     margin-bottom: .5vw;
     text-align: center;
 }
-video[poster]{
-    object-fit: cover;
+section{
+    padding: .5vw;
+    width: 100vw;
+    height: 15.5vw;
+    width: 100vw;
 }
-video{
+section h5{
+    font-size: 2vw;
+}
+.movie-cards-container{
     display: flex;
-    justify-content: center;
+    width: 99vw;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+.movie-card{
+    margin-top: .5vw;
+    width: 19vw;
+    height: 11vw;
+    background-image: url(img/3515433-endgamedek.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 1.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    transition: .5s;
+    overflow: hidden;
+}
+.movie-card:hover{
+    transition: .5s;
+    transform: scale(1.07);   
+}
+.movie-card div{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    background-color: rgba(10,10,10,.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    font-size: 1.5vw;
+}
+.similar .movie-cards-container .movie-card:nth-child(1){
+    background-image: url(img/HG5.png);
+    /*background-size: 125%;
+    background-position: -20px 0;*/
+}
+.similar .movie-cards-container .movie-card:nth-child(2){
+    background-image: url(img/theAdamProject.png);
+    background-position: 0 0;
+}
+.similar .movie-cards-container .movie-card:nth-child(3){
+    background-image: url(img/Oppenheimer.png);
+}
+.similar .movie-cards-container .movie-card:nth-child(4){
+    background-image: url(img/all\ hail\ macbethCover.png);
+    background-size: 105%;
+    background-position: -10px 0;
+}
+.similar .movie-cards-container .movie-card:nth-child(5){
+    background-image: url(img/DestinationCover.png);
+    background-position: 0 0;
+}
+.also-by .movie-cards-container .movie-card:nth-child(1){
+    background-image: url(img/EchoOfTMRW.png);
+    background-size: 125%;
+    background-position: -20px 0;
+}
+.also-by .movie-cards-container .movie-card:nth-child(2){
+    background-image: url(img/Moscow.png);
+}
+.also-by .movie-cards-container .movie-card:nth-child(3){
+    background-image: url(img/Burn!Cover.png);
+}
+.also-by .movie-cards-container .movie-card:nth-child(4){
+    background-image: url(img/all\ hail\ macbethCover.png);
+    background-size: 105%;
+    background-position: -10px 0;
+}
+.also-by .movie-cards-container .movie-card:nth-child(5){
+    background-image: url(img/DestinationCover.png);
+    background-position: 0 0;
 }

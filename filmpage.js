@@ -1,73 +1,116 @@
-const play = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-</svg>`;
-const pause = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>`;
-const sound = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-</svg>`;
-const mute = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-</svg>`;
+let playButton = document.querySelector(".play-button");
+let body = document.querySelector("body");
+let videoPlayer = document.querySelector(".fullscreen-video");
+let videoControls = document.querySelector(".video-controls");
+let backAndSettingsPanel = document.querySelector(".back-and-settings")
+let backButton = document.querySelector(".back-button");
+let filmPlayer = document.querySelector(".fullscreen-video video");
+let pauseInfo = document.querySelector(".pause-info");
+let playbackControlsPanel = document.querySelector(".playback-controls .blurred-panel")
+let pauseInfoPanel = document.querySelector(".pause-info .blurred-panel");
+let pauseButtonPlayback = document.querySelector(".pause-button-playback");
+let playButtonPlayback = document.querySelector(".play-button-playback")
+let playPauseButton = document.querySelector(".play-pause-button");
+let soundControlButtonLoud = document.querySelector(".sound-control-button-loud");
+let soundControlButtonMute = document.querySelector(".sound-control-button-mute");
+let fullscreenButton = document.querySelector(".fullscreen-button");
 
-const playButton = document.querySelector('.play-button');
-const video = document.getElementById('video');
-const timeline = document.querySelector('.timeline');
-const soundButton = document.querySelector('.sound-button');
-const fullscreenButton = document.querySelector('.fullscreen-button');
-const videoContainer = document.querySelector('.film-image');
-let isFullScreen = false;
+let timerID;
 
-playButton.addEventListener('click', function () {
-  if (video.paused) {
-    video.play();
-    videoContainer.classList.add('playing');
-    playButton.innerHTML = pause;
-  } else {
-    video.pause();
-    videoContainer.classList.remove('playing');
-    playButton.innerHTML = play;
-  }
-})
-
-video.onended = function () {
-  playButton.innerHTML = play;
+function showVideo(event){
+    dissolveControls();
+    body.classList.add("disable-scroll");
+    videoPlayer.classList.add("active");
+    pauseInfoPanel.classList.add("hidden");
+    filmPlayer.play();
+    playButtonPlayback.style.display = "none";
+    pauseButtonPlayback.style.display = "block";
+    body.addEventListener("mousemove", showControls);
+    body.addEventListener("mousemove", dissolveControls);
+    event.stopPropagation();
 }
 
-video.ontimeupdate = function () {
-  const percentagePosition = (100*video.currentTime) / video.duration;
-  timeline.style.backgroundSize = `${percentagePosition}% 100%`;
-  timeline.value = percentagePosition;
+function hideVideo(event){
+    filmPlayer.pause();
+    body.classList.remove("disable-scroll");
+    videoPlayer.classList.remove("active");
+    pauseInfoPanel.classList.remove("hidden");
+    showControls();
+    event.stopPropagation();
+    body.removeEventListener("mousemove", dissolveControls);
 }
 
-timeline.addEventListener('change', function () {
-  const time = (timeline.value * video.duration) / 100;
-  video.currentTime = time;
-});
+function soundOnOff(){
+    if (filmPlayer.muted) {
+        filmPlayer.muted = false;
+        soundControlButtonMute.style.display = "none";
+        soundControlButtonLoud.style.display = "block";
+    }
+    else {
+        filmPlayer.muted = true;
+        soundControlButtonMute.style.display = "block";
+        soundControlButtonLoud.style.display = "none";
+    }
+}
 
-soundButton.addEventListener('click', function () {
-  video.muted = !video.muted;
-  soundButton.innerHTML = video.muted ? mute : sound;
-});
+function fullscreen(){
+    if (filmPlayer.requestFullscreen) {
+        filmPlayer.requestFullscreen();
+    }
+}
 
-fullscreenButton.addEventListener('click', function () {
-  if (!isFullScreen) {
-    if (video.requestFullscreen) {
-    video.requestFullscreen();
-  } else if (video.webkitRequestFullscreen) { /* Safari */
-    video.webkitRequestFullscreen();
-  } else if (video.msRequestFullscreen) { /* IE11 */
-    video.msRequestFullscreen();
-  }
-  } else {
-    if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) { /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE11 */
-    document.msExitFullscreen();
-  }
-  }
-});
+function videoPausePlay(event){
+    console.log(event.target)
+    if (event.target == videoControls || event.target == pauseButtonPlayback || event.target == playButtonPlayback){
+        if (filmPlayer.paused) {
+            filmPlayer.play();
+            pauseInfoPanel.classList.add("hidden");
+            playButtonPlayback.style.display = "none";
+            pauseButtonPlayback.style.display = "block";
+            dissolveControls();
+            console.log("playing");
+            body.addEventListener("mousemove", showControls);
+            body.addEventListener("mousemove", dissolveControls);
+        }
+        else {
+            filmPlayer.pause();
+            pauseInfoPanel.classList.remove("hidden");
+            playButtonPlayback.style.display = "block";
+            pauseButtonPlayback.style.display = "none";
+            showControls();
+            console.log("paused");
+            body.removeEventListener("mousemove", dissolveControls);
+        }
+        event.stopPropagation();
+    }
+}
+
+function showControls(){
+    playbackControlsPanel.classList.remove("hidden");
+    backAndSettingsPanel.classList.remove("hidden");
+    clearTimeout(timerID);
+}
+
+function dissolveControls() {
+    clearTimeout(timerID);
+    timerID = setTimeout(()=>{
+        playbackControlsPanel.classList.add("hidden");
+        backAndSettingsPanel.classList.add("hidden");
+    }, 3000);
+}
+
+function renderPlayedLength() {
+
+}
+
+videoControls.addEventListener("click", videoPausePlay);
+playButtonPlayback.addEventListener("click", videoPausePlay);
+pauseButtonPlayback.addEventListener("click", videoPausePlay);
+
+soundControlButtonLoud.addEventListener("click", soundOnOff);
+soundControlButtonMute.addEventListener("click", soundOnOff);
+
+fullscreenButton.addEventListener("click", fullscreen);
+
+playButton.addEventListener("click", showVideo);
+backButton.addEventListener("click", hideVideo);
