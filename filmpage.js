@@ -14,20 +14,26 @@ let playPauseButton = document.querySelector(".play-pause-button");
 let soundControlButtonLoud = document.querySelector(".sound-control-button-loud");
 let soundControlButtonMute = document.querySelector(".sound-control-button-mute");
 let fullscreenButton = document.querySelector(".fullscreen-button");
+let playedLength = document.querySelector(".played-length");
+let totalLength = document.querySelector(".total-length");
 
 let timerID;
 
 function showVideo(event){
+    if (event.detail == 0){
+        return;
+    }
     dissolveControls();
+    filmPlayer.play();
     body.classList.add("disable-scroll");
     videoPlayer.classList.add("active");
     pauseInfoPanel.classList.add("hidden");
-    filmPlayer.play();
     playButtonPlayback.style.display = "none";
     pauseButtonPlayback.style.display = "block";
     body.addEventListener("mousemove", showControls);
     body.addEventListener("mousemove", dissolveControls);
     event.stopPropagation();
+    renderPlayedLength();
 }
 
 function hideVideo(event){
@@ -60,7 +66,6 @@ function fullscreen(){
 }
 
 function videoPausePlay(event){
-    console.log(event.target)
     if (event.target == videoControls || event.target == pauseButtonPlayback || event.target == playButtonPlayback){
         if (filmPlayer.paused) {
             filmPlayer.play();
@@ -68,7 +73,6 @@ function videoPausePlay(event){
             playButtonPlayback.style.display = "none";
             pauseButtonPlayback.style.display = "block";
             dissolveControls();
-            console.log("playing");
             body.addEventListener("mousemove", showControls);
             body.addEventListener("mousemove", dissolveControls);
         }
@@ -78,11 +82,29 @@ function videoPausePlay(event){
             playButtonPlayback.style.display = "block";
             pauseButtonPlayback.style.display = "none";
             showControls();
-            console.log("paused");
             body.removeEventListener("mousemove", dissolveControls);
         }
         event.stopPropagation();
     }
+}
+function videoPausePlayKey(event){
+        if (filmPlayer.paused) {
+            filmPlayer.play();
+            pauseInfoPanel.classList.add("hidden");
+            playButtonPlayback.style.display = "none";
+            pauseButtonPlayback.style.display = "block";
+            dissolveControls();
+            body.addEventListener("mousemove", showControls);
+            body.addEventListener("mousemove", dissolveControls);
+        }
+        else {
+            filmPlayer.pause();
+            pauseInfoPanel.classList.remove("hidden");
+            playButtonPlayback.style.display = "block";
+            pauseButtonPlayback.style.display = "none";
+            showControls();
+            body.removeEventListener("mousemove", dissolveControls);
+        }
 }
 
 function showControls(){
@@ -100,7 +122,23 @@ function dissolveControls() {
 }
 
 function renderPlayedLength() {
+    setInterval(()=>{
+        playedLength.style.width = filmPlayer.currentTime / filmPlayer.duration * 100 + "%";
+    }, 4)
+}
 
+function setPlayback(event){
+    console.log(event.clientX);
+    let rect = totalLength.getBoundingClientRect();
+    let newLength = filmPlayer.duration * ((event.clientX - rect.left) / rect.width);
+    filmPlayer.currentTime = newLength;
+}
+
+function previewPlayback(event){
+    console.log(event.clientX);
+    let rect = totalLength.getBoundingClientRect();
+    let previewLength = ((event.clientX - rect.left) / rect.width * 100);
+    playedLength.style.width = previewLength;
 }
 
 videoControls.addEventListener("click", videoPausePlay);
@@ -114,3 +152,14 @@ fullscreenButton.addEventListener("click", fullscreen);
 
 playButton.addEventListener("click", showVideo);
 backButton.addEventListener("click", hideVideo);
+
+window.addEventListener("keydown", checkKeyPressed);
+
+function checkKeyPressed(event){
+    if (event.keyCode == "32") {
+        videoPausePlayKey();
+    }
+}
+
+totalLength.addEventListener("click", setPlayback);
+totalLength.addEventListener("mouseover", previewPlayback);
