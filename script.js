@@ -16,8 +16,20 @@ let soundControlButtonMute = document.querySelector(".sound-control-button-mute"
 let fullscreenButton = document.querySelector(".fullscreen-button");
 let playedLength = document.querySelector(".played-length");
 let totalLength = document.querySelector(".total-length");
+let episodesCloseButton = document.querySelector(".close-button");
+let episodesPanel = document.querySelector(".episodes-popup");
+let episodesShowButton = document.querySelector(".episodes-button");
 
 let timerID;
+
+function toggleEpisodesPanel(){
+    if (episodesPanel.style.display == "none"){
+        episodesPanel.style.display = "flex";
+    }
+    else{
+        episodesPanel.style.display = "none";
+    }
+}
 
 function showVideo(event){
     if (event.detail == 0){
@@ -140,6 +152,10 @@ function previewPlayback(event){
     let previewLength = ((event.clientX - rect.left) / rect.width * 100);
     playedLength.style.width = previewLength;
 }
+
+
+episodesShowButton.addEventListener("click", toggleEpisodesPanel);
+episodesCloseButton.addEventListener("click", toggleEpisodesPanel);
 
 videoControls.addEventListener("click", videoPausePlay);
 playButtonPlayback.addEventListener("click", videoPausePlay);

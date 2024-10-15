@@ -1,10 +1,9 @@
 @font-face {
     font-family: 'Righteous';
-    src: url('righteous-regular-webfont.woff2') format('woff2'),
-         url('righteous-regular-webfont.woff') format('woff');
+    src: url('fonts/righteous/righteous-regular-webfont.woff2') format('woff2'),
+         url('fonts/righteous/righteous-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 *{
     color: whitesmoke;
@@ -197,9 +196,6 @@ section h5{
 .coming-soon .movie-cards-container .movie-card:nth-child(5){
     background-image: url(img/DestinationCover.png);
     background-position: 0 0;
-}
-.Favourites .movie-cards-container .movie-card:nth-child(1){
-    background-image: url(img/jaws.webp);
 }
 .Favourites .movie-cards-container .movie-card:nth-child(2){
     background-image: url(img/interstellar.webp);
