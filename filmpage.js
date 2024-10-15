@@ -162,4 +162,4 @@ function checkKeyPressed(event){
 }
 
 totalLength.addEventListener("click", setPlayback);
-totalLength.addEventListener("mouseover", previewPlayback);
+//totalLength.addEventListener("mouseover", previewPlayback);
