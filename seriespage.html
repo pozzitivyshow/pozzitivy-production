@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/jpg" href="PP.png"/>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div><a href="index.html"><h1>Pozzitivy <br> Production</h1></a></div>
         <nav>
             <div><a href="index.html"><img src="home.png"></a></div>
@@ -31,17 +31,45 @@
             <div class="episodes-panel">
                 <div class="top-panel">
                     <div class="seasons">
-                        <div class="season"><button><p>Season 1</p></button></div>
+                        <div class="season selected"><button><p>Season 1</p></button></div>
+                        <div class="season"><button><p>Season 2</p></button></div>
                     </div>
-                    <div class="close-button"><p>X</p></div>
+                    <div class="close-button" onclick="closePanel()"><p>X</p></div>
                 </div>
                 <div class="episodes">
                     <div class="episode-card">
-                        <div><img src="img/moscow-cover.png"></div>
-                        <div class="product-info">
+                        <div class="episode-cover"><img src="img/moscow-cover.png"></div>
+                        <div class="episode-info">
                             <div><p class="episode-number">Episode 1</p></div>
                             <div><p class="episode-title">I'm never going to Moscow again.</p></div>
-                            <div><p class="episode-description">Pozzitivy records his flight and his first week in Moscow, which he spends in the heart of it</p></div>
+                            <div><p class="episode-description">Pozzitivy records his flight and his first week in Moscow, which he spends in the heart of it.</p></div>
+                        </div>
+                        <div class="play-button"><img class="button-images" src="img/play-button-white.png"></div>
+                    </div>
+                    <div class="episode-card">
+                        <div class="episode-cover"><img src="img/moscow-cover.png"></div>
+                        <div class="episode-info">
+                            <div><p class="episode-number">Episode 2</p></div>
+                            <div><p class="episode-title">Doing totally (not) illegal stuff.</p></div>
+                            <div><p class="episode-description">The village lives by different rules, to the point where there is an evident contrast between the civilized city and the wild outskirts.</p></div>
+                        </div>
+                        <div class="play-button"><img class="button-images" src="img/play-button-white.png"></div>
+                    </div>
+                    <div class="episode-card">
+                        <div class="episode-cover"><img src="img/moscow-cover.png"></div>
+                        <div class="episode-info">
+                            <div><p class="episode-number">Episode 3</p></div>
+                            <div><p class="episode-title">Leaving Day.</p></div>
+                            <div><p class="episode-description">Leaving the village behind, Pozzitivy returns to the busy capital only to return to the suburbs and find himself in the middle of a lake.</p></div>
+                        </div>
+                        <div class="play-button"><img class="button-images" src="img/play-button-white.png"></div>
+                    </div>
+                    <div class="episode-card">
+                        <div class="episode-cover"><img src="img/moscow-cover.png"></div>
+                        <div class="episode-info">
+                            <div><p class="episode-number">Episode 4</p></div>
+                            <div><p class="episode-title">The Last Night.</p></div>
+                            <div><p class="episode-description">As the last week approaches it seems the adventure is almost over, yet this is the most eventful week so far including the troublesome trip back.</p></div>
                         </div>
                         <div class="play-button"><img class="button-images" src="img/play-button-white.png"></div>
                     </div>
@@ -57,7 +85,7 @@
                         <img class="button-images" src="play-button.png">
                         <p>Play</p>
                     </button>
-                    <button class="episodes-button control-button">
+                    <button onclick="openPanel()" class="episodes-button control-button">
                         <img class="button-images" src="img/episodes-icon-black.png">
                         <p>Episodes</p>
                     </button>
